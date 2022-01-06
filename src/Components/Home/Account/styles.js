@@ -15,4 +15,12 @@ const settingOptions = StyleSheet.create({
   fontSize: 18,
 });
 
-export {header, settingOptions};
+const sectionTitle = StyleSheet.create({
+  padding: 6,
+  textAlign: 'center',
+  backgroundColor: 'white',
+  height: 40,
+  fontSize: 18,
+});
+
+export {header, settingOptions, sectionTitle};
