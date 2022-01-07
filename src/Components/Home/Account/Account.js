@@ -8,9 +8,16 @@ import {Divider} from 'react-native-elements';
 import IconFont from 'react-native-vector-icons/FontAwesome';
 import IconAnt from 'react-native-vector-icons/AntDesign';
 import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Account = () => {
   const navigation = useNavigation();
+
+  //
+  const handleSignOut = async () => {
+    await AsyncStorage.removeItem('jwtToken');
+    navigation.navigate('Login');
+  };
 
   return (
     <>
@@ -44,11 +51,7 @@ const Account = () => {
           </Text>
         </View>
         <TouchableOpacity style={button}>
-          <Button
-            title="Sign Out"
-            color="white"
-            onPress={() => navigation.navigate('Login')}
-          />
+          <Button title="Sign Out" color="white" onPress={handleSignOut} />
         </TouchableOpacity>
       </View>
     </>

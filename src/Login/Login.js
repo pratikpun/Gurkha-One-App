@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native';
+import {KeyboardAvoidingView, Text, TouchableOpacity} from 'react-native';
 import {Button, Alert, TextInput} from 'react-native';
 import Header from '../Components/Header';
 import {border, backgroundColor, text, button, register} from './styles';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -26,6 +27,8 @@ const Login = () => {
       loginData
     );
     if (response.data.data.success === true) {
+      await AsyncStorage.setItem('jwtToken', response.data.data.token);
+      console.log(response.data.data);
       navigation.navigate('Home');
     } else {
       Alert.alert('Error', `Email/Password is invalid.`);
@@ -58,8 +61,8 @@ const Login = () => {
             title="Log In"
             color="white"
             //onPress={() => navigation.navigate('Home')}
-            onPress={() => navigation.replace('Home')}
-            //onPress={handleLogIn}
+            //onPress={() => navigation.replace('Home')}
+            onPress={handleLogIn}
           />
         </TouchableOpacity>
         <TouchableOpacity style={register}>

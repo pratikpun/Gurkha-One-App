@@ -13,6 +13,7 @@ import {button} from '../../../Login/styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {background, itemA, itemB, itemsWrapper} from './styles';
 import {SectionList} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Dashboard = () => {
   const [teamInfo, setTeamInfo] = useState([]);
@@ -24,13 +25,24 @@ const Dashboard = () => {
   }, []);
 
   const getData = async () => {
-    const resp = await axios.get('http://localhost:9000/api/dashboard');
+    // get AsyncStorage token from the local storage
+    const value = await AsyncStorage.getItem('jwtToken');
+    console.log(value);
+    const resp = await axios.get('http://localhost:9000/api/dashboard', {
+      // must use jwtTokens in API headers when authCheck middleware is used in API routes.
+      headers: {
+        Authorization: 'Bearer ' + value,
+        Accept: 'application/json',
+        'Contnet-Type': 'application/json',
+      },
+    });
 
     setTeamInfo(resp.data);
     if (resp.data) {
       setResponse(true);
     }
   };
+
   console.log(teamInfo);
 
   // must render this to use FlatList
