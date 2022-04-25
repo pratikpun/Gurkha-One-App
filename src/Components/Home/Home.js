@@ -4,6 +4,7 @@ import Account from './Account/Account';
 import Search from './Search/Search';
 import Dashboard from '../../Components/Home/Dashboard/Dashboard';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Teams from './Teams/Teams';
 
 const MyTabs = () => {
   const Tab = createBottomTabNavigator();
@@ -20,6 +21,13 @@ const MyTabs = () => {
         component={Dashboard}
         options={{
           tabBarIcon: ({focused}) => <Icon name="home" size={25} />,
+        }}
+      />
+      <Tab.Screen
+        name="Teams"
+        component={Teams}
+        options={{
+          tabBarIcon: () => <Icon name="user" size={25} />,
         }}
       />
       <Tab.Screen

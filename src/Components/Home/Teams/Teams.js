@@ -4,7 +4,7 @@ import {button} from '../../../Login/styles';
 import {body} from './styles';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const Search = () => {
+const Teams = () => {
   const [click, setClick] = useState(false);
 
   const handleClick = () => {
@@ -13,16 +13,7 @@ const Search = () => {
 
   return (
     <View style={{backgroundColor: '#C1CFDA', height: '100%'}}>
-      {/* view the dropdown menu in rows */}
-      <View style={{flexDirection: 'row', zIndex: 1}}>
-        <SearchTeam />
-      </View>
-      {/* implement search function */}
-      <TouchableOpacity style={button}>
-        <Button title="Search" color="white" onPress={handleClick} />
-      </TouchableOpacity>
-
-      {click ? <ResultCard /> : null}
+      <Text>Favourites</Text>
     </View>
   );
 };
@@ -43,21 +34,7 @@ const SearchTeam = () => {
         marginLeft: 40,
         marginTop: 20,
       }}>
-      <DropDownPicker
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-        placeholder="Select a team..."
-        searchable={true}
-        searchPlaceholder="Enter team name..."
-        selectedItemLabelStyle={{fontWeight: 'bold'}}
-        selectedItemContainerStyle={body}
-        bottomOffset={100}
-        listMode="SCROLLVIEW"
-      />
+      >
     </View>
   );
 };
@@ -90,4 +67,4 @@ const ResultCard = () => {
   );
 };
 
-export default Search;
+export default Teams;

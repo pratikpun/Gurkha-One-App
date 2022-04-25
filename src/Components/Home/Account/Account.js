@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from 'react-native';
 import {Button} from 'react-native-elements/dist/buttons/Button';
 import {button} from '../../../Login/styles';
 import {useNavigation} from '@react-navigation/native';
@@ -21,39 +28,54 @@ const Account = () => {
 
   return (
     <>
-      <View>
-        <Text style={header}>Welcome (Username).</Text>
-        <Divider width={2} />
+      <ScrollView>
         <View>
-          <Text style={sectionTitle}>Profile</Text>
-          <Text style={settingOptions}>
-            <Text>
-              <IconFont name="heart" size={20} />{' '}
-            </Text>
-            Favourite Teams
-          </Text>
+          <Text style={header}>Welcome (Username).</Text>
           <Divider width={2} />
-          <Text style={settingOptions}>
-            <Text>
-              <IconMaterial name="account-group" size={24} />{' '}
+          <View>
+            <View style={{flexDirection: 'row', backgroundColor: 'red'}}>
+              <Image
+                source={{uri: 'https://reactjs.org/logo-og.png'}}
+                style={{
+                  width: 150,
+                  height: 150,
+                  borderRadius: 150 / 2,
+                }}
+              />
+              <View style={{marginLeft: 20}}>
+                <Text style={sectionTitle}>Full name</Text>
+                <Text style={sectionTitle}>Email</Text>
+              </View>
+            </View>
+            <Text style={settingOptions}>
+              <Text>
+                <IconFont name="heart" size={20} />{' '}
+              </Text>
+              Favourite Teams
             </Text>
-            My Team
-          </Text>
-          <Divider width={2} />
-          <Text style={settingOptions}>Options 3</Text>
-          <Divider width={2} />
-          <Text style={settingOptions}>
-            {' '}
-            <Text>
-              <IconMaterial name="account-remove" size={24} />{' '}
+            <Divider width={2} />
+            <Text style={settingOptions}>
+              <Text>
+                <IconMaterial name="account-group" size={24} />{' '}
+              </Text>
+              My Team
             </Text>
-            Delete Account
-          </Text>
+            <Divider width={2} />
+            <Text style={settingOptions}>Options 3</Text>
+            <Divider width={2} />
+            <Text style={settingOptions}>
+              {' '}
+              <Text>
+                <IconMaterial name="account-remove" size={24} />{' '}
+              </Text>
+              Delete Account
+            </Text>
+          </View>
+          <TouchableOpacity style={button}>
+            <Button title="Sign Out" color="white" onPress={handleSignOut} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={button}>
-          <Button title="Sign Out" color="white" onPress={handleSignOut} />
-        </TouchableOpacity>
-      </View>
+      </ScrollView>
     </>
   );
 };

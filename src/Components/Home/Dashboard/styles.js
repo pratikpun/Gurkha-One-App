@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 const background = StyleSheet.create({
-  backgroundColor: 'pink',
+  backgroundColor: '#C1CFDA',
   height: '100%',
   width: '100%',
   flex: 1,
@@ -16,6 +16,7 @@ const itemsWrapper = StyleSheet.create({
   backgroundColor: 'white',
   height: 50,
   marginTop: 20,
+  marginBottom: 20,
 });
 
 const itemA = StyleSheet.create({
@@ -26,6 +27,6 @@ const itemA = StyleSheet.create({
 });
 const itemB = StyleSheet.create({
   textAlign: 'center',
-  fontSize: 25,
+  fontSize: 30,
 });
 export {background, itemA, itemB, itemsWrapper};

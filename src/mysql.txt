@@ -1,0 +1,8 @@
+query to get favourite team of a user, by joining two tables (user, team)
+
+SELECT u.userID, u.firstName, t.teamID,t.teamName
+FROM sampleData.User u
+INNER JOIN sampleData.favouriteTeam ft
+ON ft.userID = u.userID
+INNER JOIN sampleData.Teams t
+ON t.teamID = ft.teamID

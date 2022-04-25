@@ -26,11 +26,13 @@ const Login = () => {
       'http://localhost:9000/api/login',
       loginData
     );
+    console.log(response.data.data);
     if (response.data.data.success === true) {
       await AsyncStorage.setItem('jwtToken', response.data.data.token);
       console.log(response.data.data);
       navigation.navigate('Home');
-    } else {
+    }
+    if (response.data.data.success === false) {
       Alert.alert('Error', `Email/Password is invalid.`);
     }
   };

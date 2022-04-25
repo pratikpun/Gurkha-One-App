@@ -7,6 +7,7 @@ import {
   Button,
   ScrollView,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 import Header from '../Components/Header';
 import {background, details, text, login, border} from './styles';
@@ -34,21 +35,22 @@ const Register = () => {
   const handleSumbit = async () => {
     console.log(formData);
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match, please try again');
+      Alert.alert('Passwords do not match, please try again');
     } else {
       const response = await axios.post(
         'http://localhost:9000/api/register',
         formData
       );
+      console.log(response);
       console.log(response.data.msg);
 
       if (response.data.msg === 'exist') {
-        alert('Email already used');
+        Alert.alert('Email already in use');
       } else {
         if (response.data.msg === 'success') {
           navigation.navigate('Login');
         } else {
-          alert('Error, please check all fields again.');
+          Alert.alert('Error, please check all fields again.');
         }
       }
     }
