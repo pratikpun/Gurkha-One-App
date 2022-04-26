@@ -1,68 +1,57 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {TouchableOpacity, View, Button, Text, ScrollView} from 'react-native';
-import {button} from '../../../Login/styles';
-import {body} from './styles';
-import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/AntDesign';
+
+import {titleText, listofTeams, eachTeam} from './styles';
+import axios from 'axios';
 
 const Teams = () => {
-  const [click, setClick] = useState(false);
+  const [data, setData] = useState([]);
+  const [heartType, setHeartType] = useState('heart');
 
-  const handleClick = () => {
-    setClick(true);
+  useEffect(() => {
+    getTeams();
+  });
+
+  const getTeams = async () => {
+    const resp = await axios.get('http://localhost:9000/api/teams', {
+      // must use jwtTokens in API headers when authCheck middleware is used in API routes.
+      // headers: {
+      //   Authorization: 'Bearer ' + value,
+      //   Accept: 'application/json',
+      //   'Content-Type': 'application/json',
+      // },
+    });
+
+    setData(resp.data);
   };
+
+  console.log(data);
 
   return (
     <View style={{backgroundColor: '#C1CFDA', height: '100%'}}>
-      <Text>Favourites</Text>
-    </View>
-  );
-};
-
-const SearchTeam = () => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Reading FC', value: 'readingFC'},
-    {label: 'Kent FC', value: 'kentFC'},
-    {label: 'Swindon FC', value: 'swindonFC'},
-  ]);
-
-  return (
-    <View
-      style={{
-        width: '80%',
-        marginLeft: 40,
-        marginTop: 20,
-      }}>
-      >
-    </View>
-  );
-};
-
-const ResultCard = () => {
-  return (
-    <View
-      style={{
-        height: 180,
-        width: 300,
-        backgroundColor: '#7899D4',
-        borderRadius: 15,
-        marginLeft: 45,
-        marginTop: 50,
-      }}>
-      <Text style={{fontSize: 25, textAlign: 'center', margin: 5}}>
-        {' '}
-        Team Name
-      </Text>
-      <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
-        Reading FC
-      </Text>
-      <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
-        Reading FC Logo
-      </Text>
-      <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
-        Team Description
-      </Text>
+      <Text style={titleText}>All Teams</Text>
+      <ScrollView>
+        <View style={listofTeams}>
+          {data.map(team => (
+            <>
+              <Text style={eachTeam} key={team.teamID}>
+                {team.teamName}
+                <TouchableOpacity
+                  onPress={() => {
+                    if (heartType === 'heart') {
+                      setHeartType('hearto');
+                    } else {
+                      setHeartType('heart');
+                    }
+                  }}>
+                  <Icon name={heartType} size={25} />
+                </TouchableOpacity>
+              </Text>
+            </>
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 };
