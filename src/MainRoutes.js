@@ -4,6 +4,7 @@ import Register from './Register/Register';
 import Home from './Components/Home/Home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
+import Favourites from './Components/Home/Favourites.js/Favourites';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,11 @@ const MainRoutes = () => {
           options={{headerShown: false}}
           name="Register"
           component={Register}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Favourites"
+          component={Favourites}
         />
       </Stack.Navigator>
     </NavigationContainer>

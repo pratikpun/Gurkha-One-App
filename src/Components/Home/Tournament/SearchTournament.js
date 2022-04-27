@@ -9,12 +9,6 @@ const SearchTournament = () => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    //{label: 'Reading Cup', value: 'readingCup'},
-    //{label: 'Reading Cup', value: 'readingCup'},
-    // {label: 'Swindon Cup', value: 'swindonCup'},
-    // {label: 'Reading Cup', value: 'readingCup'},
-  ]);
 
   useEffect(() => {
     getTournaments();
@@ -35,16 +29,13 @@ const SearchTournament = () => {
 
   const listItems = [];
 
-  data.map(item => {
+  data.forEach(item => {
     let row = {};
     row['label'] = item.Name;
     row['value'] = item.Name;
     listItems.push(row);
   });
 
-  console.log(value);
-
-  //console.log(data);
   return (
     <View style={dropdown}>
       {data.length > 0 && (
@@ -54,7 +45,6 @@ const SearchTournament = () => {
           items={listItems}
           setOpen={setOpen}
           setValue={setValue}
-          setItems={setItems}
           placeholder="Select a tournament..."
           searchable={true}
           searchPlaceholder="Enter tournament name..."

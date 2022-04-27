@@ -29,7 +29,10 @@ const Login = () => {
     console.log(response.data.data);
     if (response.data.data.success === true) {
       await AsyncStorage.setItem('jwtToken', response.data.data.token);
-      console.log(response.data.data);
+      await AsyncStorage.setItem(
+        'userID',
+        JSON.stringify(response.data.data.userID)
+      );
       navigation.navigate('Home');
     }
     if (response.data.data.success === false) {

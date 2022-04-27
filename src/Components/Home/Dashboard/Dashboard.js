@@ -49,7 +49,6 @@ const Dashboard = () => {
   const getData = async () => {
     // get AsyncStorage token from the local storage
     const value = await AsyncStorage.getItem('jwtToken');
-    console.log(value);
     const resp = await axios.get('http://localhost:9000/api/dashboard', {
       // must use jwtTokens in API headers when authCheck middleware is used in API routes.
       headers: {
@@ -84,7 +83,7 @@ const Dashboard = () => {
             <View style={itemsWrapper}>
               <Text style={itemA}>
                 {' '}
-                {console.log(teamInfo)}
+                {/* {console.log(teamInfo)} */}
                 {teamInfo[0].teamName} {teamInfo[0].teamScore}
               </Text>
               <Text style={itemA}> - </Text>
@@ -128,33 +127,6 @@ const Dashboard = () => {
         {/* </FlatList> */}
       </ScrollView>
     </SafeAreaView>
-    //       // {/* if value of response is true after getting data, then only render the component */}
-    //       {/* {response && (
-    //         <View>
-    //           <Text>DashBoard</Text>
-    //           {teamInfo.map(item => {
-    //             return <Text key={item.teamID}>{item.teamName}</Text>;
-    //           })}
-    //         </View>
-    //       )} */}
-
-    //       {/* if value of response is true after getting data, then render the component else text msg. */}
-    //       {/* {response ? (
-    //         <View>
-    //           {teamInfo.map(item => {
-    //             return (
-    //               <View key={item.teamID}>
-    //                 <Text>{item.teamName}</Text>
-    //                 <Text>{item.teamScore}</Text>
-    //               </View>
-    //             );
-    //           })}
-    //         </View>
-    //       ) : (
-    //         <>
-    //           <Text>Sorry, an error occured.</Text>
-    //         </>
-    //       )} */}
   );
 };
 

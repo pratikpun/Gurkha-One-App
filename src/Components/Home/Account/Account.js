@@ -47,12 +47,20 @@ const Account = () => {
                 <Text style={sectionTitle}>Email</Text>
               </View>
             </View>
-            <Text style={settingOptions}>
+
+            <TouchableOpacity style={{backgroundColor: 'green'}}>
+              <Button
+                title="Favourite Teams"
+                onPress={() => navigation.navigate('Favourites')}
+              />
               <Text>
                 <IconFont name="heart" size={20} />{' '}
               </Text>
-              Favourite Teams
+            </TouchableOpacity>
+            <Text>
+              <IconFont name="heart" size={20} />{' '}
             </Text>
+
             <Divider width={2} />
             <Text style={settingOptions}>
               <Text>

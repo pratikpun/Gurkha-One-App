@@ -19,4 +19,8 @@ const eachTeam = StyleSheet.create({
   padding: 10,
 });
 
-export {titleText, listofTeams, eachTeam};
+const hidden = StyleSheet.create({
+  display: 'none',
+});
+
+export {titleText, listofTeams, eachTeam, hidden};
