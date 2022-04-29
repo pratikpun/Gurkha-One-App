@@ -4,7 +4,14 @@ import axios from 'axios';
 import {Button} from 'react-native-elements/dist/buttons/Button';
 import {button} from '../../../Login/styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {background, itemA, itemB, itemsWrapper} from './styles';
+import {
+  background,
+  itemA,
+  scoreTitle,
+  itemsWrapper,
+  leftTeam,
+  rightTeam,
+} from './styles';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SearchTournament} from '../Tournament/SearchTournament';
@@ -80,18 +87,13 @@ const Dashboard = () => {
         {response ? (
           <>
             <SliderBox images={img} />
-            <Text style={itemB}>Todays' Game</Text>
+            <Text style={scoreTitle}>TODAY'S GAME</Text>
             <View style={itemsWrapper}>
-              <Text style={itemA}>
-                {' '}
-                {/* {console.log(teamInfo)} */}
-                {teamInfo[0].teamName} {teamInfo[0].teamScore}
-              </Text>
+              <Text style={leftTeam}>{teamInfo[0].teamName}</Text>
+              <Text style={leftTeam}> {teamInfo[0].teamScore}</Text>
               <Text style={itemA}> - </Text>
-              <Text style={itemA}>
-                {' '}
-                {teamInfo[1].teamScore} {teamInfo[1].teamName}
-              </Text>
+              <Text style={itemA}> {teamInfo[1].teamScore}</Text>
+              <Text style={rightTeam}> {teamInfo[1].teamName}</Text>
             </View>
             <>
               {/* Horizontal Line with text in middle */}
@@ -113,7 +115,7 @@ const Dashboard = () => {
               <View
                 style={{
                   zIndex: 1,
-                  marginTop: 25,
+                  marginTop: 20,
                   alignItems: 'center',
                 }}>
                 <SearchTournament setTournamentValue={setTournamentValue} />

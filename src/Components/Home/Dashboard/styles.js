@@ -11,8 +11,9 @@ const itemsWrapper = StyleSheet.create({
   //   position: 'relative',
   //   justifyContent: 'center',
   //   alignItems: 'center',
+  display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   backgroundColor: 'white',
   height: 50,
   marginTop: 20,
@@ -24,9 +25,33 @@ const itemA = StyleSheet.create({
   fontSize: 20,
   margin: 10,
   fontWeight: 'bold',
+  justifyContent: 'center',
 });
-const itemB = StyleSheet.create({
+
+const leftTeam = StyleSheet.create({
+  textAlign: 'center',
+  fontSize: 20,
+  margin: 10,
+  fontWeight: 'bold',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginLeft: 20,
+});
+const rightTeam = StyleSheet.create({
+  textAlign: 'center',
+  fontSize: 20,
+  margin: 10,
+  fontWeight: 'bold',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginRight: 20,
+});
+const scoreTitle = StyleSheet.create({
   textAlign: 'center',
   fontSize: 30,
+  fontWeight: 'bold',
+  marginTop: 10,
 });
-export {background, itemA, itemB, itemsWrapper};
+export {background, itemA, scoreTitle, itemsWrapper, leftTeam, rightTeam};
