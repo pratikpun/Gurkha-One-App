@@ -33,13 +33,21 @@ const Login = () => {
         'userID',
         JSON.stringify(response.data.data.userID)
       );
+      await AsyncStorage.setItem('firstName', response.data.data.firstName);
+      await AsyncStorage.setItem('email', response.data.data.email);
       navigation.navigate('Home');
     }
     if (response.data.data.success === false) {
+      console.log(response.data.data);
       Alert.alert('Error', `Email/Password is invalid.`);
     }
-  };
 
+    // if (response.data.data.success === undefined) {
+    //   Alert.alert('Error', `Email/Password is invalid.`);
+    // }
+
+    console.log(response.data.data);
+  };
   return (
     //<View> instead of KeyboardAvoidingView
     <>

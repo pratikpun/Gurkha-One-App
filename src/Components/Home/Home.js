@@ -11,7 +11,8 @@ const MyTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#52b69a',
+        tabBarActiveTintColor: '#3B8EA5',
+        // tabBarActiveTintColor: '#52b69a',
         tabBarLabelStyle: {
           fontSize: 12,
         },
@@ -27,7 +28,7 @@ const MyTabs = () => {
         name="Teams"
         component={Teams}
         options={{
-          tabBarIcon: () => <Icon name="user" size={25} />,
+          tabBarIcon: () => <Icon name="team" size={25} />,
         }}
       />
       <Tab.Screen

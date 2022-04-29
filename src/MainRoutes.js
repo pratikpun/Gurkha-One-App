@@ -4,7 +4,16 @@ import Register from './Register/Register';
 import Home from './Components/Home/Home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import Favourites from './Components/Home/Favourites.js/Favourites';
+import Favourites from './Components/Home/Favourites/Favourites';
+import Reading from './Components/TeamScreen/Reading';
+import Swindon from './Components/TeamScreen/Swindon';
+import Kent from './Components/TeamScreen/Kent';
+import EditProfile from './Components/Home/EditProfile';
+import Oxford from './Components/TeamScreen/Oxford';
+import Slough from './Components/TeamScreen/Slough';
+import Newbury from './Components/TeamScreen/Newbury';
+import Basingstoke from './Components/TeamScreen/Basingstoke';
+import Aldershot from './Components/TeamScreen/Aldershot';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,9 +37,54 @@ const MainRoutes = () => {
           component={Register}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Favourites"
           component={Favourites}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Reading"
+          component={Reading}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Swindon"
+          component={Swindon}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Kent"
+          component={Kent}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Aldershot"
+          component={Aldershot}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Basingstoke"
+          component={Basingstoke}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Newbury"
+          component={Newbury}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Slough"
+          component={Slough}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Oxford"
+          component={Oxford}
+        />
+        <Stack.Screen
+          options={{headerShown: true}}
+          name="EditProfile"
+          component={EditProfile}
         />
       </Stack.Navigator>
     </NavigationContainer>

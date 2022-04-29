@@ -62,10 +62,10 @@ const Register = () => {
         <Header title="Register" />
         <View>
           <View style={{width: '90%', marginLeft: 20}}>
-            <Text style={text}>First Name</Text>
+            <Text style={text}>Name</Text>
             <TextInput
               style={details}
-              placeholder="First name"
+              placeholder="Name"
               value={formData.fName}
               onChangeText={value => handleChange('firstName', value)}
             />

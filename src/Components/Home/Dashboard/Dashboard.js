@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import axios from 'axios';
 import {Button} from 'react-native-elements/dist/buttons/Button';
 import {button} from '../../../Login/styles';
@@ -14,13 +7,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {background, itemA, itemB, itemsWrapper} from './styles';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  SearchTournament,
-  SearchTournamentYear,
-} from '../Tournament/SearchTournament';
+import {SearchTournament} from '../Tournament/SearchTournament';
 import {Upcoming} from '../../UpcomingTournament/Upcoming';
 import {SliderBox} from 'react-native-image-slider-box';
 import {titleText} from '../../UpcomingTournament/styles';
+import TitleLine from '../TitleLine';
 
 const Dashboard = () => {
   const [teamInfo, setTeamInfo] = useState([]);
@@ -30,19 +21,37 @@ const Dashboard = () => {
     require('/Users/pratikpun/Desktop/Dissertation/MyApp/src/assets/football2.jpg'),
     require('/Users/pratikpun/Desktop/Dissertation/MyApp/src/assets/football3.jpg'),
     require('/Users/pratikpun/Desktop/Dissertation/MyApp/src/assets/football4.jpg'),
-    // require('../../../assets/football2.JPG'),
-    // require('../../../assets/football3.JPG'),
-    // require('../../../assets/football4.JPG'),
   ]);
+  const [click, setClick] = useState(false);
+  const [data, setData] = useState([]);
+  const [value, setValue] = useState(null);
+  const [tournamentValue, setTournamentValue] = useState({value: ''});
+  const [upcomingTournament, setUpcomingTournament] = useState([]);
 
   // useEffect runs before any components.
   useEffect(() => {
     getData();
+    getTournamentByYear();
+    getUpcomingTournaments();
   }, []);
 
-  const [click, setClick] = useState(false);
+  const getTournamentByYear = async () => {
+    const resp = await axios.post(
+      'http://localhost:9000/api/tournaments',
+      tournamentValue
+    );
+
+    setData(resp.data);
+  };
+
+  const getUpcomingTournaments = async () => {
+    const resp = await axios.get('http://localhost:9000/api/upcoming');
+
+    setUpcomingTournament(resp.data);
+  };
 
   const handleClick = () => {
+    getTournamentByYear();
     setClick(true);
   };
 
@@ -63,14 +72,6 @@ const Dashboard = () => {
       setResponse(true);
     }
   };
-
-  // must render this to use FlatList
-  // const renderName = ({item}) => (
-  //   <TouchableOpacity style={itemA}>
-  //     <Text style={itemsWrapper}> {item.teamName} </Text>
-  //     <Text style={itemsWrapper}> {item.teamScore} </Text>
-  //   </TouchableOpacity>
-  // );
 
   return (
     <SafeAreaView style={background}>
@@ -93,64 +94,79 @@ const Dashboard = () => {
               </Text>
             </View>
             <>
-              <View>
-                <Text style={titleText}>Upcoming Tournaments</Text>
-              </View>
+              {/* Horizontal Line with text in middle */}
+              <TitleLine title="Upcoming Tournaments" />
 
               <ScrollView horizontal={true}>
-                <Upcoming />
-                <Upcoming />
-                <Upcoming />
+                {upcomingTournament.map(item => (
+                  <Upcoming
+                    name={item.utName}
+                    date={item.utDate}
+                    venue={item.utVenue}
+                    desc={item.utDesc}
+                  />
+                ))}
               </ScrollView>
-              <View style={{flexDirection: 'row', zIndex: 1, marginTop: 25}}>
-                <SearchTournament />
-                <SearchTournamentYear />
+
+              <TitleLine title="Find Tournament" />
+
+              <View
+                style={{
+                  zIndex: 1,
+                  marginTop: 25,
+                  alignItems: 'center',
+                }}>
+                <SearchTournament setTournamentValue={setTournamentValue} />
+                {/* <SearchTournamentYear /> */}
               </View>
               {/* implement search function */}
               <TouchableOpacity style={button}>
                 <Button title="Search" onPress={handleClick} />
               </TouchableOpacity>
 
-              {click ? <ResultCard /> : null}
+              {data.length > 0 && <ResultCard data={data} />}
             </>
           </>
         ) : (
           <></>
         )}
-
-        {/* <FlatList
-        numColumns={2}
-        data={teamInfo}
-        renderItem={renderName}
-        keyExtractor={teamInfo.teamID}
-      /> */}
-        {/* </FlatList> */}
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const ResultCard = () => {
+const ResultCard = props => {
   return (
-    <View
-      style={{
-        height: 130,
-        width: 300,
-        backgroundColor: '#7899D4',
-        borderRadius: 15,
-        marginLeft: 45,
-        marginTop: 20,
-      }}>
-      <Text style={{fontSize: 25, textAlign: 'center', margin: 5}}>
-        {' '}
-        Gurkha Cup
-      </Text>
-      <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
-        Date: 29th July 2022
-      </Text>
-      <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
-        Venue: TBC
-      </Text>
+    <View>
+      {props.data.map((item, index) => (
+        <View key={index}>
+          <View
+            style={{
+              height: 130,
+              width: 300,
+              backgroundColor: '#7899D4',
+              borderRadius: 15,
+              marginLeft: 45,
+              marginTop: 20,
+            }}>
+            <Text
+              style={{
+                fontSize: 25,
+                textAlign: 'center',
+                margin: 5,
+                textDecorationLine: 'underline',
+              }}>
+              {item.Name}
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
+              {item.tournamentDesc}
+            </Text>
+            <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
+              Venue: TBC
+            </Text>
+          </View>
+        </View>
+      ))}
     </View>
   );
 };

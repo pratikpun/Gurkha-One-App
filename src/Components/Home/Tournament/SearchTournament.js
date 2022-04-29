@@ -3,9 +3,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {View} from 'react-native';
 import {body, dropdown, dropdownYear} from './styles';
 import axios from 'axios';
-import {getActiveChildNavigationOptions} from 'react-navigation';
 
-const SearchTournament = () => {
+const SearchTournament = props => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
   const [value, setValue] = useState(null);
@@ -14,6 +13,7 @@ const SearchTournament = () => {
     getTournaments();
   }, []);
 
+  const listItems = [];
   const getTournaments = async () => {
     const resp = await axios.get('http://localhost:9000/api/tournaments', {
       // must use jwtTokens in API headers when authCheck middleware is used in API routes.
@@ -23,13 +23,17 @@ const SearchTournament = () => {
       //   'Content-Type': 'application/json',
       // },
     });
-
     setData(resp.data);
   };
 
-  const listItems = [];
+  // filter out duplicate names from the data
+  const dupNames = data.map(item => item.Name);
+  const filterdData = data.filter(
+    ({Name}, index) => !dupNames.includes(Name, index + 1)
+  );
 
-  data.forEach(item => {
+  // add the unique names into the lables
+  filterdData.forEach(item => {
     let row = {};
     row['label'] = item.Name;
     row['value'] = item.Name;
@@ -45,6 +49,12 @@ const SearchTournament = () => {
           items={listItems}
           setOpen={setOpen}
           setValue={setValue}
+          onSelectItem={item => {
+            props.setTournamentValue(prevState => ({
+              ...prevState,
+              value: item.value,
+            }));
+          }}
           placeholder="Select a tournament..."
           searchable={true}
           searchPlaceholder="Enter tournament name..."

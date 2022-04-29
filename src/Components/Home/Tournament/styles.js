@@ -6,7 +6,7 @@ const body = StyleSheet.create({
 
 const dropdown = StyleSheet.create({
   margin: 10,
-  width: '60%',
+  width: '80%',
 });
 
 const dropdownYear = StyleSheet.create({
