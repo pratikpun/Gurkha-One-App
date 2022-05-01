@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {KeyboardAvoidingView, Text, TouchableOpacity} from 'react-native';
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Button, Alert, TextInput} from 'react-native';
 import Header from '../Components/Header';
 import {border, backgroundColor, text, button, register} from './styles';
@@ -36,22 +42,24 @@ const Login = () => {
       await AsyncStorage.setItem('firstName', response.data.data.firstName);
       await AsyncStorage.setItem('email', response.data.data.email);
       navigation.navigate('Home');
+      setLoginData({
+        email: '',
+        password: '',
+      });
     }
     if (response.data.data.success === false) {
       console.log(response.data.data);
       Alert.alert('Error', `Email/Password is invalid.`);
     }
 
-    // if (response.data.data.success === undefined) {
-    //   Alert.alert('Error', `Email/Password is invalid.`);
-    // }
-
     console.log(response.data.data);
   };
   return (
-    //<View> instead of KeyboardAvoidingView
     <>
-      <Header title="Welcome" />
+      {/* // <Header title="GURKHA ONE" /> */}
+      <View style={loginHeader.backgroundColor}>
+        <Text style={loginHeader.content}>GURKHA ONE</Text>
+      </View>
       <KeyboardAvoidingView style={backgroundColor} behavior="padding">
         <Text style={text}>Email</Text>
         <TextInput
@@ -90,3 +98,19 @@ const Login = () => {
 };
 
 export default Login;
+
+const loginHeader = StyleSheet.create({
+  content: {
+    textAlign: 'center',
+    fontSize: 40,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  backgroundColor: {
+    //backgroundColor: '#52b69a',
+    backgroundColor: '#6fa8dc',
+    opacity: 0.8,
+    justifyContent: 'center',
+    height: '30%',
+  },
+});
