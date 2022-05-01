@@ -39,7 +39,7 @@ const Register = () => {
     let reg =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     if (reg.test(email) === false) {
-      Alert.alert('Invalid email. Please try again!');
+      Alert.alert('Error', `Invalid Email!`);
       return false;
     }
     return true;
@@ -54,14 +54,14 @@ const Register = () => {
       formData.password === '' ||
       formData.confirmPassword === ''
     ) {
-      Alert.alert('Please fill in all the fields.');
+      Alert.alert('Error', `Please fill in all the fields.`);
     } else {
       if (validateEmail(formData.email)) {
         if (formData.password.length <= 6) {
-          Alert.alert('Password must be minimum 7 characters.');
+          Alert.alert('Error', `Password must be minimum 7 characters.`);
         } else {
           if (formData.password !== formData.confirmPassword) {
-            Alert.alert('Passwords do not match, please try again');
+            Alert.alert('Error', `Password do not match.`);
           } else {
             const response = await axios.post(
               'http://localhost:9000/api/register',
@@ -71,12 +71,12 @@ const Register = () => {
             // console.log(response.data.msg);
 
             if (response.data.msg === 'exist') {
-              Alert.alert('Email already in use');
+              Alert.alert('Error', `Email already in use.`);
             } else {
               if (response.data.msg === 'success') {
                 setTimeout(showSuccessMsg, 500);
               } else {
-                Alert.alert('Error, please check all fields again.');
+                Alert.alert('Error', `Please check all fields again.`);
               }
             }
           }
