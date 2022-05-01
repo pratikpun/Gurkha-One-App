@@ -8,7 +8,7 @@ import {view} from './styles';
 const Kent = () => {
   const navigation = useNavigation();
   return (
-    <ScrollView style={{backgroundColor: '#C1CFDA'}}>
+    <ScrollView style={{backgroundColor: '#9fc5e8'}}>
       <ScreenHeader title="KENT FC" />
       <TitleLine title="About" />
       <View style={view}>

@@ -83,7 +83,6 @@ const Dashboard = () => {
   return (
     <SafeAreaView style={background}>
       <ScrollView nestedScrollEnabled={true}>
-        {/* <FlatList> */}
         {response ? (
           <>
             <SliderBox images={img} />
@@ -146,7 +145,7 @@ const ResultCard = props => {
             style={{
               height: 130,
               width: 300,
-              backgroundColor: '#7899D4',
+              backgroundColor: '#dfe3ee',
               borderRadius: 15,
               marginLeft: 45,
               marginTop: 20,

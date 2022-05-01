@@ -120,7 +120,7 @@ const Teams = () => {
   };
 
   return (
-    <View style={{backgroundColor: '#C1CFDA', height: '100%'}}>
+    <View style={{backgroundColor: '#9fc5e8', height: '100%'}}>
       {/* <Text style={titleText}>All Teams</Text> */}
       <TitleLine title="All Teams" />
       <ScrollView>

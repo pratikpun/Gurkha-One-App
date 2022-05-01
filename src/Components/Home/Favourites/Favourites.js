@@ -48,7 +48,7 @@ const Favourites = props => {
   };
 
   return (
-    <ScrollView style={{backgroundColor: '#C1CFDA', height: '100%'}}>
+    <ScrollView style={{backgroundColor: '#9fc5e8', height: '100%'}}>
       <ScreenHeader title=" My Favourites " />
       <TitleLine title={`Favourites : ${favData.length}`} />
 
@@ -60,8 +60,6 @@ const Favourites = props => {
             <FavouriteCard key={item.favID} teamName={item.teamName} />
           </TouchableOpacity>
         ))}
-
-        <Button title="BACK" onPress={() => navigation.navigate('Account')} />
       </View>
     </ScrollView>
   );

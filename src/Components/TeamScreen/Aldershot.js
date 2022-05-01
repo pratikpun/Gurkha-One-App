@@ -9,7 +9,7 @@ const Aldershot = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView style={{backgroundColor: '#C1CFDA'}}>
+    <ScrollView style={{backgroundColor: '#9fc5e8'}}>
       <ScreenHeader title="ALDERSHOT FC" />
       <TitleLine title="About" />
       <View style={view}>

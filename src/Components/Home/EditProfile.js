@@ -49,7 +49,9 @@ const EditProfile = () => {
     //<View> instead of KeyboardAvoidingView
     <>
       <ScreenHeader title="Edit Profile" />
-      <KeyboardAvoidingView style={backgroundColor} behavior="padding">
+      <KeyboardAvoidingView
+        style={{backgroundColor: '#9fc5e8', height: '100%'}}
+        behavior="padding">
         <Text style={text}>Name</Text>
         <TextInput
           style={border}
@@ -72,12 +74,6 @@ const EditProfile = () => {
             //onPress={() => navigation.navigate('Home')}
             //onPress={() => navigation.replace('Home')}
             onPress={handleSave}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={register}>
-          <Button
-            title="Back?"
-            onPress={() => navigation.navigate('Account')}
           />
         </TouchableOpacity>
       </KeyboardAvoidingView>

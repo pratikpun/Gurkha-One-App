@@ -20,7 +20,7 @@ const Search = () => {
     setClick(true);
   };
   return (
-    <View style={{backgroundColor: '#C1CFDA', height: '100%'}}>
+    <View style={{backgroundColor: '#9fc5e8', height: '100%'}}>
       {/* view the dropdown menu in rows */}
       <View style={{flexDirection: 'row', zIndex: 1}}>
         <SearchTeam setTeamValue={setTeamValue} />
@@ -107,7 +107,7 @@ const ResultCard = props => {
       style={{
         height: 180,
         width: 300,
-        backgroundColor: '#7899D4',
+        backgroundColor: '#dfe3ee',
         borderRadius: 15,
         marginLeft: 45,
         marginTop: 50,

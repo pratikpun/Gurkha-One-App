@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 const button = StyleSheet.create({
-  backgroundColor: '#52b69a',
+  backgroundColor: '#007EA7',
   marginTop: 20,
   marginLeft: 100,
   marginRight: 100,

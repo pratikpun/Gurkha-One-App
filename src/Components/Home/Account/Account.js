@@ -63,7 +63,7 @@ const Account = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={{height: '100%', backgroundColor: '#9fc5e8'}}>
       <View>
         <TitleLine title="MY ACCOUNT" />
         <View>
@@ -216,5 +216,6 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    fontWeight: 'bold',
   },
 });

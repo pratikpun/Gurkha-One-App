@@ -17,7 +17,6 @@ import axios from 'axios';
 
 const Register = () => {
   const navigation = useNavigation();
-
   const [formData, setformData] = useState({
     firstName: '',
     email: '',
@@ -31,26 +30,56 @@ const Register = () => {
     }));
   };
 
+  const showSuccessMsg = () => {
+    Alert.alert('Successfully registered!');
+    navigation.navigate('Login');
+  };
+
+  const validateEmail = email => {
+    let reg =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (reg.test(email) === false) {
+      Alert.alert('Invalid email. Please try again!');
+      return false;
+    }
+    return true;
+  };
+
   // API Call Backend
   const handleSumbit = async () => {
-    console.log(formData);
-    if (formData.password !== formData.confirmPassword) {
-      Alert.alert('Passwords do not match, please try again');
+    // console.log(formData);
+    if (
+      formData.email === '' ||
+      formData.firstName === '' ||
+      formData.password === '' ||
+      formData.confirmPassword === ''
+    ) {
+      Alert.alert('Please fill in all the fields.');
     } else {
-      const response = await axios.post(
-        'http://localhost:9000/api/register',
-        formData
-      );
-      console.log(response);
-      console.log(response.data.msg);
-
-      if (response.data.msg === 'exist') {
-        Alert.alert('Email already in use');
-      } else {
-        if (response.data.msg === 'success') {
-          navigation.navigate('Login');
+      if (validateEmail(formData.email)) {
+        if (formData.password.length <= 6) {
+          Alert.alert('Password must be minimum 7 characters.');
         } else {
-          Alert.alert('Error, please check all fields again.');
+          if (formData.password !== formData.confirmPassword) {
+            Alert.alert('Passwords do not match, please try again');
+          } else {
+            const response = await axios.post(
+              'http://localhost:9000/api/register',
+              formData
+            );
+            console.log(response.data);
+            // console.log(response.data.msg);
+
+            if (response.data.msg === 'exist') {
+              Alert.alert('Email already in use');
+            } else {
+              if (response.data.msg === 'success') {
+                setTimeout(showSuccessMsg, 500);
+              } else {
+                Alert.alert('Error, please check all fields again.');
+              }
+            }
+          }
         }
       }
     }

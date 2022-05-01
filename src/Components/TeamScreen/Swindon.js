@@ -9,7 +9,7 @@ const Swindon = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView style={{backgroundColor: '#C1CFDA'}}>
+    <ScrollView style={{backgroundColor: '#9fc5e8'}}>
       <ScreenHeader title="SWINDON FC" />
       <TitleLine title="About" />
       <View style={view}>

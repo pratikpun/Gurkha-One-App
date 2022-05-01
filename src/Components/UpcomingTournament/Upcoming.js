@@ -8,7 +8,8 @@ const Upcoming = ({name, date, venue, desc}) => {
         style={{
           height: 200,
           width: 250,
-          backgroundColor: '#F79D5C',
+          //backgroundColor: '#F79D5C',
+          backgroundColor: '#dfe3ee',
           borderRadius: 15,
           borderWidth: 0.5,
           marginLeft: 45,

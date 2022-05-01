@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 const header = StyleSheet.create({
-  backgroundColor: '#C1CFDA',
+  backgroundColor: '#9fc5e8',
   height: 40,
   fontSize: 20,
   fontWeight: 'bold',

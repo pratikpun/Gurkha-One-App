@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   backgroundColor: {
-    backgroundColor: '#52b69a',
+    //backgroundColor: '#52b69a',
+    backgroundColor: '#6fa8dc',
     opacity: 0.8,
     justifyContent: 'center',
     height: '30%',
