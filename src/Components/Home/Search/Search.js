@@ -4,6 +4,7 @@ import {button} from '../../../Login/styles';
 import {body} from './styles';
 import DropDownPicker from 'react-native-dropdown-picker';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Search = () => {
   const [click, setClick] = useState(false);
@@ -45,13 +46,15 @@ const SearchTeam = props => {
   }, []);
 
   const getTeams = async () => {
+    const value = await AsyncStorage.getItem('jwtToken');
+
     const resp = await axios.get('http://localhost:9000/api/teams', {
       // must use jwtTokens in API headers when authCheck middleware is used in API routes.
-      // headers: {
-      //   Authorization: 'Bearer ' + value,
-      //   Accept: 'application/json',
-      //   'Content-Type': 'application/json',
-      // },
+      headers: {
+        Authorization: 'Bearer ' + value,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
 
     setData(resp.data);

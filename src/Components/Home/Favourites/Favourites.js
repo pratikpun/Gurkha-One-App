@@ -24,9 +24,18 @@ const Favourites = props => {
   }, []);
 
   const getFavList = async () => {
+    const value = await AsyncStorage.getItem('jwtToken');
+
     const userID = await AsyncStorage.getItem('userID');
     const res = await axios.get(
-      'http://localhost:9000/api/favourites/' + userID
+      'http://localhost:9000/api/favourites/' + userID,
+      {
+        headers: {
+          Authorization: 'Bearer ' + value,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
     );
     setFavData(res.data);
   };

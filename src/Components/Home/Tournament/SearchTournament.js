@@ -3,6 +3,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {View} from 'react-native';
 import {body, dropdown, dropdownYear} from './styles';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SearchTournament = props => {
   const [open, setOpen] = useState(false);
@@ -15,13 +16,15 @@ const SearchTournament = props => {
 
   const listItems = [];
   const getTournaments = async () => {
+    const value = await AsyncStorage.getItem('jwtToken');
+
     const resp = await axios.get('http://localhost:9000/api/tournaments', {
       // must use jwtTokens in API headers when authCheck middleware is used in API routes.
-      // headers: {
-      //   Authorization: 'Bearer ' + value,
-      //   Accept: 'application/json',
-      //   'Content-Type': 'application/json',
-      // },
+      headers: {
+        Authorization: 'Bearer ' + value,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
     setData(resp.data);
   };

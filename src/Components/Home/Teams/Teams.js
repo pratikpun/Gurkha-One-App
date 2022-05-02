@@ -49,9 +49,18 @@ const Teams = () => {
   };
 
   const getFavListItems = async () => {
+    const value = await AsyncStorage.getItem('jwtToken');
+
     const userID = await AsyncStorage.getItem('userID');
     const res = await axios.get(
-      'http://localhost:9000/api/favourites/' + userID
+      'http://localhost:9000/api/favourites/' + userID,
+      {
+        headers: {
+          Authorization: 'Bearer ' + value,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
     );
     setFavoriteList(res.data);
   };
@@ -76,13 +85,15 @@ const Teams = () => {
   //console.log(favoriteList);
 
   const getTeams = async () => {
+    const value = await AsyncStorage.getItem('jwtToken');
+
     const resp = await axios.get('http://localhost:9000/api/teams', {
       // must use jwtTokens in API headers when authCheck middleware is used in API routes.
-      // headers: {
-      //   Authorization: 'Bearer ' + value,
-      //   Accept: 'application/json',
-      //   'Content-Type': 'application/json',
-      // },
+      headers: {
+        Authorization: 'Bearer ' + value,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
 
     setData(resp.data);

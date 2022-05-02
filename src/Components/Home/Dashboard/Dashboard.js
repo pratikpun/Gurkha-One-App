@@ -53,7 +53,15 @@ const Dashboard = () => {
   };
 
   const getUpcomingTournaments = async () => {
-    const resp = await axios.get('http://localhost:9000/api/upcoming');
+    const value = await AsyncStorage.getItem('jwtToken');
+
+    const resp = await axios.get('http://localhost:9000/api/upcoming', {
+      headers: {
+        Authorization: 'Bearer ' + value,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
 
     setUpcomingTournament(resp.data);
   };

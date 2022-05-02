@@ -42,16 +42,9 @@ const EditProfile = () => {
   const handleSave = async () => {
     //Alert.alert(userData);
     console.log(userData);
-    const value = await AsyncStorage.getItem('jwtToken');
     const res = await axios.put(
       'http://localhost:9000/api/editProfile',
-      // {
-      //   headers: {
-      //     Authorization: 'Bearer ' + value,
-      //     Accept: 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      // },
+
       userData
     );
     if (res.data.msg === 'success') {
@@ -86,13 +79,7 @@ const EditProfile = () => {
         />
 
         <TouchableOpacity style={button}>
-          <Button
-            title="SAVE"
-            color="white"
-            //onPress={() => navigation.navigate('Home')}
-            //onPress={() => navigation.replace('Home')}
-            onPress={handleSave}
-          />
+          <Button title="SAVE" color="white" onPress={handleSave} />
         </TouchableOpacity>
       </KeyboardAvoidingView>
     </>
