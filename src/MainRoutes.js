@@ -42,42 +42,42 @@ const MainRoutes = () => {
           component={Favourites}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Reading"
           component={Reading}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Swindon"
           component={Swindon}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Kent"
           component={Kent}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Aldershot"
           component={Aldershot}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Basingstoke"
           component={Basingstoke}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Newbury"
           component={Newbury}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Slough"
           component={Slough}
         />
         <Stack.Screen
-          options={{headerShown: false}}
+          options={{headerShown: true}}
           name="Oxford"
           component={Oxford}
         />

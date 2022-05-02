@@ -19,8 +19,10 @@ import {Upcoming} from '../../UpcomingTournament/Upcoming';
 import {SliderBox} from 'react-native-image-slider-box';
 import {titleText} from '../../UpcomingTournament/styles';
 import TitleLine from '../TitleLine';
+import {useNavigation} from '@react-navigation/native';
 
 const Dashboard = () => {
+  const navigation = useNavigation();
   const [teamInfo, setTeamInfo] = useState([]);
   const [response, setResponse] = useState(false);
   const [img, setImg] = useState([
@@ -31,7 +33,6 @@ const Dashboard = () => {
   ]);
   const [click, setClick] = useState(false);
   const [data, setData] = useState([]);
-  const [value, setValue] = useState(null);
   const [tournamentValue, setTournamentValue] = useState({value: ''});
   const [upcomingTournament, setUpcomingTournament] = useState([]);
 

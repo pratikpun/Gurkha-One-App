@@ -39,10 +39,28 @@ const EditProfile = () => {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     //Alert.alert(userData);
     console.log(userData);
-    axios.put('http://localhost:9000/api/editProfile', userData);
+    const value = await AsyncStorage.getItem('jwtToken');
+    const res = await axios.put(
+      'http://localhost:9000/api/editProfile',
+      // {
+      //   headers: {
+      //     Authorization: 'Bearer ' + value,
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      // },
+      userData
+    );
+    if (res.data.msg === 'success') {
+      Alert.alert('Successfully Updated', `Please login again to see changes!`);
+      navigation.navigate('Account');
+    } else {
+      Alert.alert('Error', `Something went wrong!`);
+    }
+    console.log(res.data);
   };
 
   return (
