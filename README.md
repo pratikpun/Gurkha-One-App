@@ -20,3 +20,8 @@ Practices the basic use of CRUD operations.
 - getData from back-end and render (R).
 - Update profile details (U).
 - Users can delete account (D).
+
+Future plans:
+
+- Integrate "Map" to view location of upcoming tournaments.
+- Provide "Player Profile" screen.
