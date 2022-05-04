@@ -159,21 +159,23 @@ const ResultCard = props => {
               marginLeft: 45,
               marginTop: 20,
             }}>
-            <Text
-              style={{
-                fontSize: 25,
-                textAlign: 'center',
-                margin: 5,
-                textDecorationLine: 'underline',
-              }}>
-              {item.Name}
-            </Text>
-            <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
-              {item.tournamentDesc}
-            </Text>
-            <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
-              Venue: TBC
-            </Text>
+            <ScrollView>
+              <Text
+                style={{
+                  fontSize: 25,
+                  textAlign: 'center',
+                  margin: 5,
+                  textDecorationLine: 'underline',
+                }}>
+                {item.Name}
+              </Text>
+              <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
+                {item.tournamentDesc}
+              </Text>
+              <Text style={{fontSize: 18, textAlign: 'left', margin: 5}}>
+                Venue: PALMER PARK, READING
+              </Text>
+            </ScrollView>
           </View>
         </View>
       ))}

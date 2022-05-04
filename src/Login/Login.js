@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Image,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
@@ -59,6 +60,7 @@ const Login = () => {
       {/* // <Header title="GURKHA ONE" /> */}
       <View style={loginHeader.backgroundColor}>
         <Text style={loginHeader.content}>GURKHA ONE</Text>
+        {/* <Image source="src/assets/GOLogo.png" /> */}
       </View>
       <KeyboardAvoidingView style={backgroundColor} behavior="padding">
         <Text style={text}>Email</Text>
